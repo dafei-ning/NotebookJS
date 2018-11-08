@@ -16,6 +16,13 @@ var addNote = (title, body) => {
         body
     };
 
+    try {
+        var notesString = fs.readFileSync('note-data.json');  // 为了防止之前写的被remove
+        notes = JSON.parse(notesString);
+    } catch (e) {
+        // 不需要写任何东西，如果没有file，下面的writeFileSync直接新建
+    }
+
     notes.push(note);
     fs.writeFileSync('note-data.json', JSON.stringify(notes));
 };
