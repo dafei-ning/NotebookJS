@@ -25,6 +25,7 @@ var addNote = (title, body) => {
     if (duplicateNotes.length === 0) { // 如果没有duplicate title，就新创建note
         notes.push(note);
         saveNotes(notes);
+        return note;
     } 
 };
 
