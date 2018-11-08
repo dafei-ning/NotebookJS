@@ -1,4 +1,4 @@
-# Notes 
+# Notebook
 
 ## Modules required
 
@@ -17,6 +17,7 @@
 ## Function
 
 - `JSON.parse()`: arg1: string. 把string parse成json
+- `JSON.stringify()`: arg1: JSON. 把json转换成string
 - `notes.filter()`: filter is an array method that takes a callback.
 ```js
 var duplicateNotes = notes.filter((note) => {

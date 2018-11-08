@@ -1,33 +1,30 @@
-console.log('Starting node.js \n');
-
+console.log('Starting notes.js \n');
 
 const fs = require('fs');
 
-//console.log(module);
-// module.exports.addNote = () => {
-//     console.log('addNote');
-//     return 'new note';
-// };
+var fetchNotes = () => {
+    try {
+        var notesString = fs.readFileSync('note-data.json');  // 为了防止之前写的被remove
+        return JSON.parse(notesString);
+    } catch (e) {
+        return [];
+    }
+};
+
+var saveNotes = (notes) => {
+    fs.writeFileSync('note-data.json', JSON.stringify(notes));
+}
 
 var addNote = (title, body) => {
-    var notes = [];
-    var note ={
+    var notes = fetchNotes();
+    var note = {
         title,
         body
     };
-
-    try {
-        var notesString = fs.readFileSync('note-data.json');  // 为了防止之前写的被remove
-        notes = JSON.parse(notesString);
-    } catch (e) {
-        // 不需要写任何东西，如果没有file，下面的writeFileSync直接新建
-    }
-
     var duplicateNotes = notes.filter((note) => note.title === title); // filter callback return true or false;
-
     if (duplicateNotes.length === 0) { // 如果没有duplicate title，就新创建note
         notes.push(note);
-        fs.writeFileSync('note-data.json', JSON.stringify(notes));
+        saveNotes(notes);
     } 
 };
 
