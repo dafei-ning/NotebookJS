@@ -25,7 +25,7 @@ var addNote = (title, body) => {
 
     var duplicateNotes = notes.filter((note) => note.title === title); // filter callback return true or false;
 
-    if (duplicateNotes.length === 0) {
+    if (duplicateNotes.length === 0) { // 如果没有duplicate title，就新创建note
         notes.push(note);
         fs.writeFileSync('note-data.json', JSON.stringify(notes));
     } 
