@@ -23,8 +23,12 @@ var addNote = (title, body) => {
         // 不需要写任何东西，如果没有file，下面的writeFileSync直接新建
     }
 
-    notes.push(note);
-    fs.writeFileSync('note-data.json', JSON.stringify(notes));
+    var duplicateNotes = notes.filter((note) => note.title === title); // filter callback return true or false;
+
+    if (duplicateNotes.length === 0) {
+        notes.push(note);
+        fs.writeFileSync('note-data.json', JSON.stringify(notes));
+    } 
 };
 
 var getAll = () => {
