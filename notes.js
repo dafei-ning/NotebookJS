@@ -34,7 +34,9 @@ var getAll = () => {
 };
 
 var readNote = (title) => {
-    console.log('Reading the note: ', title);
+    var notes = fetchNotes();
+    var noteToRead = notes.filter((note) => note.title === title);
+    return noteToRead[0]; // 这里return的时候是一个数组，而外面要求的是一个key-value pair，因此要注明是哪一个
 };
 
 var removeNote = (title) => {

@@ -26,13 +26,19 @@ if (command === 'add') {
         console.log(`Title: ${note.title}`);
         console.log(`Body : ${note.body}`);
     } else {
-        console.log('Note title taken');
+        console.log('\nNote title is already taken!');
     }
 } else if (command === 'list') {
     notes.getAll();
 } else if (command === 'read') {
-    notes.readNote(argv.title);
-    //console.log('Reading note');
+    var note = notes.readNote(argv.title);
+    if (note) {
+        console.log(`\nReading note: <${note.title}>`);
+        console.log('------');
+        console.log(`Content: ${note.body}`);
+    } else {
+        console.log(`Note <${argv.title}> not found`);
+    }
 } else if (command === 'remove') {   
     var check = notes.removeNote(argv.title);
     var message = check? `\nThe note <${argv.title}> has been deleted.` : `Note <${argv.title}> not found.`
