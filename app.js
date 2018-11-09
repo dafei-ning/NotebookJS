@@ -21,7 +21,7 @@ console.log('Yargs:', argv);
 if (command === 'add') {
     var note = notes.addNote(argv.title, argv.body);
     if (note) {
-        console.log('Note created');
+        console.log('\nNote created');
         console.log('------');
         console.log(`Title: ${note.title}`);
         console.log(`Body : ${note.body}`);
@@ -33,11 +33,12 @@ if (command === 'add') {
 } else if (command === 'read') {
     notes.readNote(argv.title);
     //console.log('Reading note');
-} else if (command === 'remove') {
-    notes.removeNote(argv.title);
-    // console.log('removing note');
+} else if (command === 'remove') {   
+    var check = notes.removeNote(argv.title);
+    var message = check? `\nThe note <${argv.title}> has been deleted.` : `Note <${argv.title}> not found.`
+    console.log(message);
 } else {
-    console.log('No this command!');
+    console.log('\nNo this command!');
 }
 
 
